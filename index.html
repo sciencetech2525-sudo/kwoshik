@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEC Campus Housing</title>
+
+    <!-- SEO & Icons -->
+    <meta name="description" content="Find safe, affordable, and verified housing near MEC campus.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar glass">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <span class="logo-text">MEC</span>Haven
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#" class="active" data-page="home">Home</a>
+                <a href="#" data-page="explore">Explore</a>
+                <a href="#" data-page="dashboard" class="hidden" id="navDashboard">Dashboard</a>
+            </nav>
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-text" id="btnLogin">Log In</button>
+                <button class="btn btn-primary" id="btnSignup">Sign Up</button>
+            </div>
+            <div class="user-menu hidden" id="userMenu">
+                <span class="user-name" id="userNameDisplay">Student</span>
+                <button class="btn btn-sm btn-outline" id="btnLogout">Log Out</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="app">
+
+        <!-- View: Home -->
+        <section id="view-home" class="view active">
+            <div class="hero-section">
+                <div class="container hero-content">
+                    <h1 class="hero-title fade-in-up">Find Your Perfect <br><span class="text-gradient">Campus
+                            Home</span></h1>
+                    <p class="hero-subtitle fade-in-up delay-1">Verified listings for MEC students. Safe, reliable, and
+                        just minutes from class.</p>
+
+                    <div class="search-bar glass fade-in-up delay-2">
+                        <div class="search-input-group">
+                            <label>Location</label>
+                            <input type="text" placeholder="Near Campus, Chengannur...">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="search-input-group">
+                            <label>Type</label>
+                            <select>
+                                <option>Any Type</option>
+                                <option>Single Room</option>
+                                <option>Shared Apartment</option>
+                                <option>Hostel</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-search"
+                            onclick="document.querySelector('[data-page=explore]').click()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <!-- Abstract Background Elements -->
+                <div class="bg-blob blob-1"></div>
+                <div class="bg-blob blob-2"></div>
+            </div>
+
+            <div class="container section-padding">
+                <div class="section-header">
+                    <h2>Featured <span class="text-highlight">Stays</span></h2>
+                    <a href="#" class="link-arrow" onclick="document.querySelector('[data-page=explore]').click()">View
+                        All</a>
+                </div>
+                <div class="grid-layout" id="featuredListings">
+                    <!-- Cards injected by JS -->
+                    <div class="card skeleton"></div>
+                    <div class="card skeleton"></div>
+                    <div class="card skeleton"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- View: Explore -->
+        <section id="view-explore" class="view hidden">
+            <div class="container section-padding">
+                <div class="section-header">
+                    <h2>Explore Housing</h2>
+                    <div class="filter-controls" style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <input type="text" id="exploreSearch" placeholder="Search location..."
+                            style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.2); color:#fff; min-width:200px;">
+                        <select id="exploreType"
+                            style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.2); color:#fff;">
+                            <option value="">All Types</option>
+                            <option value="Single Room">Single Room</option>
+                            <option value="Shared Apartment">Shared Apartment</option>
+                            <option value="Hostel">Hostel</option>
+                        </select>
+                        <select id="explorePrice"
+                            style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.2); color:#fff;">
+                            <option value="">Any Price</option>
+                            <option value="5000">Under ₹5,000</option>
+                            <option value="10000">Under ₹10,000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-layout" id="exploreListings">
+                    <!-- Listings -->
+                </div>
+            </div>
+        </section>
+
+        <!-- View: Dashboard (Owner/Admin) -->
+        <section id="view-dashboard" class="view hidden">
+            <div class="container section-padding">
+            </div>
+
+            <!-- Student Dashboard Views -->
+            <div id="studentDashboard">
+                <div class="dashboard-header" style="margin-bottom:30px;">
+                    <h2 id="dashboardWelcome">Welcome, Student</h2>
+                    <div class="tabs"
+                        style="display:flex; gap:20px; border-bottom:1px solid var(--color-border); margin-top:20px;">
+                        <button class="tab-btn active" data-tab="wishlist"
+                            style="background:none; border:none; color:var(--color-primary); padding:10px 0; border-bottom:2px solid var(--color-primary); cursor:pointer;">My
+                            Wishlist</button>
+                        <button class="tab-btn" data-tab="bookings"
+                            style="background:none; border:none; color:var(--color-text-muted); padding:10px 0; border-bottom:2px solid transparent; cursor:pointer;">My
+                            Bookings</button>
+                    </div>
+                </div>
+
+                <div id="tab-wishlist" class="tab-content">
+                    <div class="grid-layout" id="wishlistListings">
+                        <!-- Wishlist Items -->
+                    </div>
+                </div>
+
+                <div id="tab-bookings" class="tab-content hidden">
+                    <div class="grid-layout" id="bookingListings">
+                        <!-- Booked Items -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Owner Dashboard Views -->
+            <div id="ownerDashboard" class="hidden">
+                <h2>Manage Listings</h2>
+
+                <!-- Add Listing Form -->
+                <div class="glass"
+                    style="padding:30px; border-radius:12px; margin-bottom:40px; border:1px solid var(--color-border);">
+                    <h3 style="margin-bottom:20px;">Post New Listing</h3>
+                    <form id="addListingForm">
+                        <div
+                            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                            <div class="form-group">
+                                <label>Property Title</label>
+                                <input type="text" name="title" required placeholder="e.g. 2BHK near MEC">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" name="location" required placeholder="e.g. Thrikkakara">
+                            </div>
+                            <div class="form-group">
+                                <label>Room Type</label>
+                                <select name="type">
+                                    <option value="Single Room">Single Room</option>
+                                    <option value="Shared Apartment">Shared Apartment</option>
+                                    <option value="Hostel">Hostel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Rent (₹/month)</label>
+                                <input type="number" name="price" required placeholder="e.g. 5000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="url" name="image" placeholder="https://..."
+                                value="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=60">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" rows="3"
+                                style="width:100%; padding:12px; background:rgba(0,0,0,0.2); border:1px solid var(--color-border); border-radius:8px; color:#fff; font-family:inherit;"
+                                placeholder="Details about specific amenities..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Publish Listing</button>
+                    </form>
+                </div>
+
+                <!-- My Listings List -->
+                <h3>Your Active Listings</h3>
+                <div class="grid-layout" id="dashboardListings">
+                    <!-- Dashboard Listings -->
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- View: Auth Modal -->
+        <div id="authModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content glass">
+                <button class="btn-close">&times;</button>
+
+                <!-- Login Form -->
+                <div id="formLogin" class="auth-form">
+                    <h3>Welcome Back</h3>
+                    <p class="auth-subtitle">Login to access verified listings</p>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required placeholder="student@mec.ac.in">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    </form>
+                    <p class="auth-switch">New here? <a href="#" id="switchSignup">Create account</a></p>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="formSignup" class="auth-form hidden">
+                    <h3>Join MEC Haven</h3>
+                    <p class="auth-subtitle">Verify your student status</p>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required placeholder="student@mec.ac.in">
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select name="role">
+                                <option value="student">Student</option>
+                                <option value="owner">House Owner</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" required placeholder="Create a password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                    <p class="auth-switch">Already have an account? <a href="#" id="switchLogin">Log In</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Listing Details Modal -->
+        <div id="listingModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content glass listing-modal-content">
+                <button class="btn-close" id="btnCloseListing">&times;</button>
+                <div class="listing-details">
+                    <img src="" alt="Listing Image" id="modalImage" class="modal-image">
+                    <div class="modal-info">
+                        <div class="modal-header">
+                            <h2 id="modalTitle">Listing Title</h2>
+                            <div class="card-price" id="modalPrice">₹0<span>/mo</span></div>
+                        </div>
+                        <div class="card-meta">
+                            <span id="modalLocation">📍 Location</span>
+                            <span id="modalDistance">📏 Distance</span>
+                        </div>
+                        <div class="tags" id="modalTags" style="margin:15px 0;">
+                            <!-- Tags -->
+                        </div>
+                        <div class="modal-description">
+                            <h3>About this place</h3>
+                            <p id="modalDescription">Description goes here...</p>
+                        </div>
+                        <div class="bg-card" style="margin-top:20px; padding:15px; border-radius:8px;">
+                            <p style="margin-bottom:10px; font-size:0.9rem; color:rgba(255,255,255,0.7);">Posted by
+                                <strong id="modalOwnerName" style="color:#fff;">Owner Name</strong>
+                            </p>
+                            <div class="modal-actions" style="display:flex; gap:10px;">
+                                <a href="#" id="btnContactOwner" class="btn btn-primary btn-block"
+                                    style="text-align:center;">Contact Owner</a>
+                                <button id="btnWishlist" class="btn btn-outline btn-block">Add to Wishlist</button>
+                                <button id="btnBookNow" class="btn btn-outline btn-block"
+                                    style="border-color:var(--color-primary); color:white;">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
